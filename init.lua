@@ -91,7 +91,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -145,9 +145,6 @@ vim.o.splitbelow = true
 --  See `:help 'list'`
 --  and `:help 'listchars'`
 --
---  Notice listchars is set using `vim.opt` instead of `vim.o`.
---  It is very similar to `vim.o` but offers an interface for conveniently interacting with tables.
---   See `:help lua-options`
 --   and `:help lua-options-guide`
 vim.o.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
@@ -248,6 +245,31 @@ rtp:prepend(lazypath)
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
+
+  -- JM: add catppuccin theme plugin
+  {
+    'f-person/auto-dark-mode.nvim',
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    },
+  },
+  {
+    'catppuccin/nvim',
+    name = 'catppuccin',
+    priority = 1000,
+    config = function()
+      require('catppuccin').setup {
+        background = {
+          light = 'latte',
+          dark = 'macchiato',
+        },
+        transparent_background = true,
+      }
+      vim.cmd.colorscheme 'catppuccin'
+    end,
+  },
 
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following

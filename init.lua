@@ -693,7 +693,7 @@ require('lazy').setup({
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        -- clangd = {},
+        clangd = {},
         gopls = {},
         pyright = {},
         -- rust_analyzer = {},
@@ -778,7 +778,7 @@ require('lazy').setup({
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
-        local disable_filetypes = { c = true, cpp = true }
+        local disable_filetypes = { c = true, cpp = true, python = true }
         if disable_filetypes[vim.bo[bufnr].filetype] then
           return nil
         else
@@ -792,10 +792,28 @@ require('lazy').setup({
         lua = { 'stylua' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
-        python = { "isort", "black" },
+        python = { 'isort', 'black' },
+        markdown = { 'prettier' },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
+      },
+      formatters = {
+        -- These python formatter settings can be defined here, but it is recommended to
+        -- define a pyproject.toml file in the project root folder instead
+        -- black = {
+        --   -- Pass command-line arguments to the black formatter.
+        --   -- Note that you need to use '=' for options that take a value.
+        --   args = { '--line-length=160' },
+        -- },
+        -- isort = {
+        --   -- isort also takes arguments if needed
+        --   args = { '--profile=black', '--line-length=160' },
+        -- },
+        prettier = {
+          -- You can add Prettier options here if needed, e.g.,
+          -- prepend_args = { '--print-width', '80' },
+        },
       },
     },
   },

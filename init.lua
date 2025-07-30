@@ -163,6 +163,10 @@ vim.o.scrolloff = 10
 -- See `:help 'confirm'`
 vim.o.confirm = true
 
+-- set insert mode to block cursor as well; now that ghostty cursor-opacity is set to 0.6 (60%),
+-- this is totally useful; (only changed the `i` from ver25 to block)
+vim.o.guicursor = "n-v-c-sm-i:block,ci-ve:ver25,r-cr-o:hor20,t:block-blinkon500-blinkoff500-TermCursor"
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 

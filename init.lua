@@ -165,7 +165,7 @@ vim.o.confirm = true
 
 -- set insert mode to block cursor as well; now that ghostty cursor-opacity is set to 0.6 (60%),
 -- this is totally useful; (only changed the `i` from ver25 to block)
-vim.o.guicursor = "n-v-c-sm-i:block,ci-ve:ver25,r-cr-o:hor20,t:block-blinkon500-blinkoff500-TermCursor"
+vim.o.guicursor = 'n-v-c-sm-i:block,ci-ve:ver25,r-cr-o:hor20,t:block-blinkon500-blinkoff500-TermCursor'
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
@@ -700,6 +700,7 @@ require('lazy').setup({
         clangd = {},
         gopls = {},
         pyright = {},
+        terraformls = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -989,7 +990,7 @@ require('lazy').setup({
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
+      ensure_installed = { 'bash', 'c', 'diff', 'hcl', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'terraform', 'vim', 'vimdoc' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {

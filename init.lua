@@ -163,6 +163,12 @@ vim.o.scrolloff = 10
 -- See `:help 'confirm'`
 vim.o.confirm = true
 
+-- JM:Set default indentation to spaces (affects treesitter auto-indent)
+vim.o.expandtab = true
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
+vim.o.softtabstop = 4
+
 -- set insert mode to block cursor as well; now that ghostty cursor-opacity is set to 0.6 (60%),
 -- this is totally useful; (only changed the `i` from ver25 to block)
 vim.o.guicursor = 'n-v-c-sm-i:block,ci-ve:ver25,r-cr-o:hor20,t:block-blinkon500-blinkoff500-TermCursor'
@@ -217,6 +223,19 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
   callback = function()
     vim.hl.on_yank()
+  end,
+})
+
+-- JM: Ensure shell files use spaces (redundant with global settings but explicit)
+vim.api.nvim_create_autocmd('FileType', {
+  desc = 'Ensure spaces for shell files',
+  group = vim.api.nvim_create_augroup('shell-indent-spaces', { clear = true }),
+  pattern = { 'sh', 'bash', 'zsh' },
+  callback = function()
+    vim.opt_local.expandtab = true
+    vim.opt_local.tabstop = 2
+    vim.opt_local.shiftwidth = 2
+    vim.opt_local.softtabstop = 2
   end,
 })
 
@@ -974,7 +993,22 @@ require('lazy').setup({
   },
 
   -- Highlight todo, notes, etc in comments
-  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
+  -- JM add highlight color
+  {
+    'folke/todo-comments.nvim',
+    event = 'VimEnter',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    opts = {
+      signs = false,
+      merge_keywords = true,
+      keywords = {
+        JM = {
+          -- icon = '',
+          color = 'info',
+        },
+      },
+    },
+  },
 
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',

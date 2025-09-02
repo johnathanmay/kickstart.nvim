@@ -269,11 +269,40 @@ require('lazy').setup({
           light = 'latte',
           dark = 'macchiato',
         },
+        float = {
+          transparent = false,
+          solid = false,
+        },
         transparent_background = true,
       }
       vim.cmd.colorscheme 'catppuccin'
     end,
   },
+  -- JM: consider using this to get block comments instead of just single-line ones
+  -- {
+  --   'numToStr/Comment.nvim',
+  --   opts = {
+  --     -- Your configuration options for Comment.nvim
+  --     -- For example, to set keybindings:
+  --     toggler = {
+  --       line = '<leader>gc', -- Toggle comment for the current line
+  --       block = '<leader>gbc', -- Toggle block comment for the current selection
+  --     },
+  --     -- Other options as needed
+  --   },
+  -- }
+  -- JM: a bunch of people recommend the copilot.lua but I couldn't get it to
+  --work. The official copilot.vim repo from github loaded, but it doesn't seem
+  --to have the chat feature and that's where the real value is. I'm leaving them
+  --here in case I want to explore more later. Extra configs can be placed in
+  --lua/custom/*.  --{
+  --  'zbirenbaum/copilot.lua',
+  --  cmd = 'Copilot',
+  --  event = 'InsertEnter',
+  --},
+  --{
+  --  'github/copilot.vim',
+  --},
 
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following

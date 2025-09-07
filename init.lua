@@ -169,6 +169,13 @@ vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.o.softtabstop = 4
 
+-- Set hcl filetype for .tftpl files
+vim.filetype.add {
+  extension = {
+    tftpl = 'hcl',
+  },
+}
+
 -- set insert mode to block cursor as well; now that ghostty cursor-opacity is set to 0.6 (60%),
 -- this is totally useful; (only changed the `i` from ver25 to block)
 vim.o.guicursor = 'n-v-c-sm-i:block,ci-ve:ver25,r-cr-o:hor20,t:block-blinkon500-blinkoff500-TermCursor'

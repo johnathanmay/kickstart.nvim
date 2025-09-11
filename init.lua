@@ -163,11 +163,11 @@ vim.o.scrolloff = 10
 -- See `:help 'confirm'`
 vim.o.confirm = true
 
--- JM:Set default indentation to spaces (affects treesitter auto-indent)
+-- JM: Set default indentation to spaces (affects treesitter auto-indent)
 vim.o.expandtab = true
-vim.o.tabstop = 4
-vim.o.shiftwidth = 4
-vim.o.softtabstop = 4
+vim.o.tabstop = 2
+vim.o.shiftwidth = 2
+vim.o.softtabstop = 2
 
 -- Set hcl filetype for .tftpl files
 vim.filetype.add {
@@ -175,6 +175,21 @@ vim.filetype.add {
     tftpl = 'hcl',
   },
 }
+
+-- Ensure shell files use spaces (redundant with global settings but explicit; leaving as example)
+-- vim.api.nvim_create_autocmd('FileType', {
+--   desc = 'Ensure spaces for shell files',
+--   group = vim.api.nvim_create_augroup('shell-indent-spaces', { clear = true }),
+--   pattern = { 'sh', 'bash', 'zsh' },
+--   callback = function()
+--     vim.opt_local.expandtab = true
+--     vim.opt_local.tabstop = 2
+--     vim.opt_local.shiftwidth = 2
+--     vim.opt_local.softtabstop = 2
+--   end,
+-- })
+
+-- JM: END
 
 -- set insert mode to block cursor as well; now that ghostty cursor-opacity is set to 0.6 (60%),
 -- this is totally useful; (only changed the `i` from ver25 to block)
@@ -230,19 +245,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
   callback = function()
     vim.hl.on_yank()
-  end,
-})
-
--- JM: Ensure shell files use spaces (redundant with global settings but explicit)
-vim.api.nvim_create_autocmd('FileType', {
-  desc = 'Ensure spaces for shell files',
-  group = vim.api.nvim_create_augroup('shell-indent-spaces', { clear = true }),
-  pattern = { 'sh', 'bash', 'zsh' },
-  callback = function()
-    vim.opt_local.expandtab = true
-    vim.opt_local.tabstop = 2
-    vim.opt_local.shiftwidth = 2
-    vim.opt_local.softtabstop = 2
   end,
 })
 

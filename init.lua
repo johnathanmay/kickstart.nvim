@@ -1064,13 +1064,8 @@ require('lazy').setup({
     build = ':TSUpdate',
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     -- NOTE: nvim-treesitter was rewritten; highlight/indent are now native nvim features.
-    -- Parsers are installed via require('nvim-treesitter').install() instead of opts.
-    config = function()
-      require('nvim-treesitter').install {
-        'bash', 'c', 'diff', 'go', 'hcl', 'html', 'lua', 'luadoc',
-        'markdown', 'markdown_inline', 'query', 'terraform', 'vim', 'vimdoc',
-      }
-    end,
+    -- Install parsers manually with :TSInstall <lang> (requires tree-sitter CLI).
+    -- Or run :TSInstall stable to install all stable parsers.
     -- There are additional nvim-treesitter modules that you can use to interact
     -- with nvim-treesitter. You should go explore a few and see what interests you:
     --
